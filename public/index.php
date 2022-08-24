@@ -32,8 +32,8 @@ $app->get('/connect', function ($request, $response, $args) {
     $client->initialize();
 
     // emit an event to the server
-    $data = ['username' => 'my-user'];
-    $client->emit('new_order', $data);
+    $data = ['username' => 'jack'];
+    $client->emit('userConnect', $data);
     $client->close();
 
     return $view->render($response, 'connect.html.twig');
