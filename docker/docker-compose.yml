@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+  reverse-proxy:
+    image: nginx:latest
+    container_name: reverse-proxy
+    hostname: reverse-proxy
+    volumes:
+      - ./reverse-proxy/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./reverse-proxy/html:/var/www/html
+    ports:
+      - "80:80"
+    links:
+      - test1
+
+  test1:
+    image: nginx:latest
+    container_name: test1
+    hostname: test1
+    volumes:
+      - ./test1/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./test1/html:/var/www/html
+    expose:
+      - 3000
+    ports:
+      - "3000:3000"
